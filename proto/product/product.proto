@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package product;
+
+// Tentukan `go_package` di sini
+option go_package = "grpc-product/proto/product;product";
+
+// Definisikan service dan pesan Anda di bawah ini
+service ProductService {
+    rpc CreateProduct(Product) returns (Product);
+    rpc ReadProduct(ReadRequest) returns (Product);
+    rpc UpdateProduct(Product) returns (Product);
+    rpc DeleteProduct(ReadRequest) returns (DeleteResponse);
+    rpc ListProducts(Empty) returns (ProductList);
+}
+
+message Product {
+    int64 id = 1;
+    string name = 2;
+    double price = 3;
+}
+
+message ReadRequest {
+    int64 id = 1;
+}
+
+message DeleteResponse {
+    bool success = 1;
+}
+
+message Empty {}
+
+message ProductList {
+    repeated Product products = 1;
+}
