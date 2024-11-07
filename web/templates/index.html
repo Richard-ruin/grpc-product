@@ -3,18 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <title>Product List</title>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <h1>Product List</h1>
-    <a href="/create">Add New Product</a>
-    <ul>
-      {{range .}}
-      <li>
-        {{.Name}} - ${{.Price}}
-        <a href="/edit?id={{.Id}}">Edit</a>
-        <a href="/delete?id={{.Id}}">Delete</a>
-      </li>
-      {{end}}
-    </ul>
+    <a href="/create" class="btn">Add New Product</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .}}
+        <tr>
+          <td>{{.Name}}</td>
+          <td>${{.Price}}</td>
+          <td>
+            <a href="/edit?id={{.Id}}">Edit</a> |
+            <a href="/delete?id={{.Id}}">Delete</a>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
   </body>
 </html>

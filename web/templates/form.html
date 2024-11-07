@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>{{if .Id}}Edit{{else}}Create{{end}} Product</title>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <h1>{{if .Id}}Edit{{else}}Create{{end}} Product</h1>
     <form action="/save" method="post">
       <input type="hidden" name="id" value="{{.Id}}" />
       <label>Name: <input type="text" name="name" value="{{.Name}}" /></label
-      ><br />
+      ><br /><br />
       <label>Price: <input type="text" name="price" value="{{.Price}}" /></label
-      ><br />
+      ><br /><br />
       <button type="submit">Save</button>
     </form>
-    <a href="/">Back to Product List</a>
+    <a href="/" class="btn">Back to Product List</a>
   </body>
 </html>

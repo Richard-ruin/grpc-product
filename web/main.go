@@ -30,6 +30,10 @@ func main() {
 
 	client = pb.NewProductServiceClient(conn)
 
+	// Serve static files (CSS)
+	fs := http.FileServer(http.Dir("web/static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	http.HandleFunc("/", listProducts)
 	http.HandleFunc("/create", createProductForm)
 	http.HandleFunc("/edit", editProductForm)
@@ -39,6 +43,8 @@ func main() {
 	log.Println("Starting web server on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+
+// (functions listProducts, createProductForm, editProductForm, saveProduct, deleteProduct remain the same)
 
 func listProducts(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
